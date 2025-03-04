@@ -1,1 +1,1 @@
-export const trailingSlash = 'ignore';
+// export const trailingSlash = 'ignore';
