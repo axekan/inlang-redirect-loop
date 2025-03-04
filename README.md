@@ -22,6 +22,6 @@ On the latest version `2.0.0-beta.26` with `trailingSlash = 'ignore'`, all route
 
 https://00bdd610.inlang-redirect-loop.pages.dev/sv/
 
-On verion `2.0.0-beta.24` with `trailingSlash = 'ignore'` everything seems to work correctly.
+On version `2.0.0-beta.24` with `trailingSlash = 'ignore'` everything seems to work correctly.
 
 https://72aaffa0.inlang-redirect-loop.pages.dev/
