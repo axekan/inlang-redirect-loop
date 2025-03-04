@@ -14,12 +14,14 @@ Steps to reproduce yourself:
 
 ### Note
 
-On version `2.0.0-beta.24`, it doesn't cause the infinite redirect for the base locale.
+This issue seems to be caused by the `trailingSlash` option (see `/src/routes/+page.ts`), but the behavior is different between paraglide-js versions.
 
-On version `2.0.0-beta.26` it causes infinite redirect for **all** languages.
+`trailingSlash` set to the default value of `never` will always cause the redirect bug.
 
-Deployed version with `2.0.0-beta.24`:
+On the latest version `2.0.0-beta.26` with `trailingSlash = 'ignore'`, all routes redirect to `/en`. 
 
-https://3be0b194.inlang-redirect-loop.pages.dev/
+https://00bdd610.inlang-redirect-loop.pages.dev/sv/
 
-notice that Swedish works in this version but English doesn't
+On verion `2.0.0-beta.24` with `trailingSlash = 'ignore'` everything seems to work correctly.
+
+https://72aaffa0.inlang-redirect-loop.pages.dev/
