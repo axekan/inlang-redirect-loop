@@ -6,8 +6,5 @@ export const handle = ({ event, resolve }) => {
 			{ ...event, request },
 			{ transformPageChunk: ({ html }) => html.replace('%lang%', locale) },
 		),
-		{
-			disableAsyncLocalStorage: true
-		}
 	);
 }
