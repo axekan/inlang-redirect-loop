@@ -11,13 +11,12 @@ export default defineConfig({
 			strategy: ['url', 'cookie', 'baseLocale'],
 			urlPatterns: [
 				{
-					pattern: `:protocol://:domain(.*)::port?/:locale(sv|en)?/:path(.*)?`,
-					deLocalizedNamedGroups: { locale: null },
-					localizedNamedGroups: {
-                        sv: { locale: null },
-                        en: { locale: 'en' }
-                    },
-				},
+					pattern: ':protocol://:domain(.*)::port?/:locale(sv|en)?/:path(.*)?',
+					localized: [
+					  ["en", ':protocol://:domain(.*)::port?/en/:path(.*)?'],
+					  ["sv", ':protocol://:domain(.*)::port?/:path(.*)?'],
+					]
+				  }
 			],
 		}),
     ]
