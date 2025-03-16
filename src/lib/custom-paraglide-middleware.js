@@ -30,24 +30,8 @@ export async function customParaglideMiddleware(request, resolve) {
     runtime.strategy.includes("url")
   ) {
     const localizedUrl = runtime.localizeUrl(request.url, { locale });
-
-    // FIXED: Normalize URLs for comparison to prevent redirect loops
-    // caused by trailing slash differences
-    const normalizedOriginalUrl = new URL(request.url);
-    const normalizedLocalizedUrl = new URL(localizedUrl);
-
-    // Remove trailing slashes for comparison
-    normalizedOriginalUrl.pathname = normalizedOriginalUrl.pathname.replace(
-      /\/$/,
-      ""
-    );
-    normalizedLocalizedUrl.pathname = normalizedLocalizedUrl.pathname.replace(
-      /\/$/,
-      ""
-    );
-
     // Only redirect if the normalized URLs don't match
-    if (normalizedLocalizedUrl.href !== normalizedOriginalUrl.href) {
+    if (normalizeURL(localizedUrl.href) !== normalizeURL(request.url)) {
       return Response.redirect(localizedUrl, 307);
     }
   }
@@ -104,6 +88,17 @@ export async function customParaglideMiddleware(request, resolve) {
     });
   }
   return response;
+}
+
+/**
+ * Normalize url for comparison
+ * @param {string} url
+ * @returns {string} normalized url string
+ */
+function normalizeURL(url) {
+  const urlObj = new URL(url);
+  urlObj.pathname.replace(/\/$/, "");
+  return urlObj.toString();
 }
 
 /**
