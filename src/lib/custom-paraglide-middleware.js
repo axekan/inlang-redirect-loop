@@ -98,7 +98,7 @@ export async function customParaglideMiddleware(request, resolve) {
 function normalizeURL(url) {
   const urlObj = new URL(url);
   urlObj.pathname.replace(/\/$/, "");
-  return urlObj.toString();
+  return urlObj.href;
 }
 
 /**
