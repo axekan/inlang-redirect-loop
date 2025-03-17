@@ -1,11 +1,12 @@
-// import { paraglideMiddleware } from '$lib/paraglide/server';
-import { customParaglideMiddleware } from "$lib/custom-paraglide-middleware";
+import { paraglideMiddleware } from '$lib/paraglide/server';
 
 export const handle = ({ event, resolve }) => {
-    return customParaglideMiddleware(event.request, ({ request, locale }) =>
-		resolve(
-			{ ...event, request },
-			{ transformPageChunk: ({ html }) => html.replace('%lang%', locale) },
-		),
-	);
+    return paraglideMiddleware(event.request, ({ request, locale }) => {
+		event.request = request;
+		return resolve(event, {
+			transformPageChunk: ({ html }) => {
+				return html.replace('%lang%', locale);
+			}
+		});
+	});
 }
